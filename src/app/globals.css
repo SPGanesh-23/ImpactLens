@@ -1,0 +1,245 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* --- Earthy palette --- */
+  --color-paper: #e7e0d5;
+  --color-olive: #737e1b;
+  --color-gold: #96916f;
+  --color-slate: #6b7d89;
+  --color-warm: #706e5b;
+  --color-charcoal: #221f18;
+  --color-olive-dark: #5a6415;
+  --color-paper-light: #f0ebe3;
+
+  /* --- Extension tokens remapped to muted earthy tones --- */
+  --color-lime: #737e1b;         /* -> olive (primary accent) */
+  --color-lime-dark: #5a6415;
+  --color-coin: #8a7d3f;         /* muted antique gold for coins */
+  --color-cyan: #6b7d89;         /* -> slate */
+  --color-magenta: #a9744f;      /* muted terracotta (earthy accent) */
+  --color-mist: #221f18;         /* -> charcoal (primary text) */
+  --color-mist-dim: #706e5b;     /* -> warm (muted text) */
+  --color-night: #e7e0d5;        /* -> paper (text on colored surfaces) */
+
+  --font-sans: var(--font-dm-sans);
+  --font-display: var(--font-fraunces);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  color: var(--color-charcoal);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* ============================================================
+   Backgrounds
+   ============================================================ */
+.paper-texture,
+.game-bg {
+  background-color: var(--color-paper);
+  background-image:
+    radial-gradient(ellipse at 20% 0%, rgba(115, 126, 27, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 100%, rgba(107, 125, 137, 0.08) 0%, transparent 50%),
+    linear-gradient(180deg, var(--color-paper-light) 0%, var(--color-paper) 40%, var(--color-paper) 100%);
+}
+
+/* very subtle warm grid for the playful board feel */
+.arcade-grid {
+  background-image:
+    linear-gradient(rgba(112, 110, 91, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(112, 110, 91, 0.05) 1px, transparent 1px);
+  background-size: 46px 46px;
+}
+
+/* ============================================================
+   Tags & chips
+   ============================================================ */
+.tagline-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: var(--color-gold);
+  color: var(--color-paper);
+  padding: 0.3rem 0.8rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 999px;
+}
+
+.coin-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background-color: rgba(138, 125, 63, 0.14);
+  border: 1px solid rgba(138, 125, 63, 0.4);
+  color: #6f6531;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--color-olive);
+  color: var(--color-paper);
+  padding: 0.875rem 1.75rem;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  border-radius: 0.625rem;
+  box-shadow: 0 6px 18px rgba(115, 126, 27, 0.2);
+  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-olive-dark);
+  box-shadow: 0 8px 24px rgba(115, 126, 27, 0.28);
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: transparent;
+  color: var(--color-charcoal);
+  padding: 0.625rem 1.25rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border: 1.5px solid var(--color-warm);
+  border-radius: 0.625rem;
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-outline:hover {
+  border-color: var(--color-olive);
+  color: var(--color-olive);
+  background-color: rgba(115, 126, 27, 0.06);
+}
+
+/* ============================================================
+   Headings
+   ============================================================ */
+.section-heading {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(1.75rem, 4vw, 2.6rem);
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--color-charcoal);
+}
+
+/* neutralised (kept so existing markup stays valid) */
+.text-glow-lime {
+  text-shadow: none;
+}
+
+/* ============================================================
+   Cards (soft earthy panels)
+   ============================================================ */
+.card {
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.38);
+  border: 1px solid rgba(112, 110, 91, 0.25);
+  border-radius: 1rem;
+  padding: 1.75rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover {
+  border-color: rgba(115, 126, 27, 0.4);
+  box-shadow: 0 10px 30px rgba(34, 31, 24, 0.08);
+  transform: translateY(-3px);
+}
+
+/* quest / goal tile with a soft colored top tint */
+.quest-tile {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  padding: 1.4rem;
+  border: 1px solid rgba(112, 110, 91, 0.22);
+  background-color: rgba(255, 255, 255, 0.4);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.quest-tile::before {
+  content: "";
+  position: absolute;
+  inset: -45% 15% auto 15%;
+  height: 70%;
+  background: radial-gradient(ellipse at center, var(--tile-glow, rgba(115, 126, 27, 0.18)) 0%, transparent 70%);
+  opacity: 0.55;
+  filter: blur(20px);
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.quest-tile:hover {
+  transform: translateY(-4px);
+  border-color: var(--tile-border, rgba(115, 126, 27, 0.4));
+  box-shadow: 0 12px 32px rgba(34, 31, 24, 0.1);
+}
+
+.quest-tile:hover::before {
+  opacity: 0.85;
+}
+
+/* badge medallion ring */
+.badge-ring {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: radial-gradient(circle at 50% 32%, rgba(255, 255, 255, 0.7), transparent 62%),
+    rgba(255, 255, 255, 0.45);
+  border: 2px solid var(--ring-color, rgba(150, 145, 111, 0.6));
+  box-shadow: 0 6px 20px rgba(34, 31, 24, 0.1), inset 0 0 12px rgba(255, 255, 255, 0.4);
+}
+
+.badge-locked {
+  filter: grayscale(0.7) brightness(0.98);
+  opacity: 0.6;
+}
+
+/* thin progress bar */
+.progress-track {
+  height: 0.55rem;
+  border-radius: 999px;
+  background: rgba(112, 110, 91, 0.18);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--color-olive), var(--color-gold));
+}
+
+/* divider line */
+.neon-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(112, 110, 91, 0.45), transparent);
+}
