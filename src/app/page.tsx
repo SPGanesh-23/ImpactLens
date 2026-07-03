@@ -5,8 +5,17 @@ import HowItWorks from "@/components/home/HowItWorks";
 import Badges from "@/components/home/Badges";
 import FinalCTA from "@/components/home/FinalCTA";
 import Footer from "@/components/home/Footer";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/lib/auth";
+import { redirect } from "next/navigation";
 
-export default function Home() {
+export default async function Home() {
+  const session = await getServerSession(authOptions);
+  
+  if (session) {
+    redirect("/dashboard");
+  }
+
   return (
     <>
       <Header />
